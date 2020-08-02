@@ -1,0 +1,35 @@
+<%- include('../partials/header'); -%>
+    <div id="crop-container" class="container ">
+        <div class="masonry row" style="position: relative;">
+            <div class="title col s12" style="position:absolute;">
+                Select Language
+            </div>
+            <div class="col s12" style="position: absolute; left: 0; top: 50px;">
+                <div class="row">
+                    <div class="col s12 m5 offset-m3 l6 offset-l3">
+                        <div class="align-center">
+                            <div class="select-lang-button"> 
+                                <a  href="/addpest/english" class="waves-effect waves-light btn margin-top-button select-width"><button class="no-default white-text">English</button></a>
+                            </div>
+                            <div class="select-lang-button">
+                                <a  href="/addpest/gujrati" class="waves-effect waves-light btn margin-top-button select-width"><button class="no-default white-text">Gujrati</button></a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer'); -%>
+    
+    <script>
+        $(document).ready(function(){
+        $('.sidenav').sidenav();
+        });
+
+
+    </script>
+</body>
+</html>

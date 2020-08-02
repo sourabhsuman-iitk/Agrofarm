@@ -1,0 +1,67 @@
+<%- include('../partials/header'); -%>
+    <div id="crop-container" class="container ">
+        <div class="masonry row" style="position: relative;">
+            <div class="title col s12" style="position:absolute;">
+                Add Chemical product
+            </div>
+            <div class="col s12" style="position: absolute; left: 0; top: 50px;">
+                <div class="row">
+                    <div class="col s12 m10 offset-m1 l8 offset-l3">
+                       
+                        
+
+                        <form action="/chemicalproduct" id="category-form" name="content" method="POST" >   
+                            <div class="input-field remove-margin">
+                                <input type="text" name="lang" id="select-lang" value="<%= lang %>" required>
+                                <label for="select-lang">Selected Language</label>
+                            </div> 
+                            <div class="input-field remove-margin">
+                                <input type="text" name="name" id="name" required>
+                                <label for="name">Chemical Product Name</label>
+                            </div>
+                            
+            
+                            <div class="input-field remove-margin">
+                                <input type="text" name="sortOrder" id="category-sort-order" required>
+                                <label for="crop-sort-order">Sort Order</label>
+                            </div>
+                                Active Status
+                                <p>
+                                    <label>
+                                      <input name="active" id="category-active" value="true" type="radio" required/>
+                                      <span class="radio-val">Active</span>
+                                    </label>
+                                  </p>
+                                  <p>
+                                    <label>
+                                      <input name="active" id="category-active" value="false" type="radio" />
+                                      <span class="radio-val">Inactive</span>
+                                    </label>
+                                  </p>
+                                                
+        
+                           <button  class="no-default white-text"> <a class="waves-effect waves-light btn-small margin-top-button">Add Chemical Product</a></button></a>
+                        </form>
+                    </div>
+                   
+                </div>
+            </div>
+    
+        </div>
+      
+    </div>
+   
+
+
+    
+    <%- include('../partials/footer'); -%>
+    
+    <script>
+        $(document).ready(function(){
+        $('.sidenav').sidenav();
+        });
+
+
+    </script>
+</body>
+</html>

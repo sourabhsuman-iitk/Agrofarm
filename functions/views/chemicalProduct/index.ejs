@@ -1,0 +1,94 @@
+<%- include('../partials/header'); -%>
+    <div id="crop-category-container" class="container ">
+        <div class="masonry row" style="position: relative;">
+            <div class="title col s12" style="position:absolute;">
+                Chemical Products
+            </div>
+
+           
+            <div class="col s12" style="position: absolute; left:0; top: 50px;" >
+                
+                <a  href="/addchemicalproduct/select" class="waves-effect waves-light btn-small margin-top-button right"><button class="no-default white-text">Add Chemical Product</button></a>
+                <% if(lang === 'gujrati'){ %>
+                    <a  href="/chemicalproduct/english" class="waves-effect waves-light btn-small btn-flat margin-top-button right">Switch to English</a>
+                  
+                <% } else if(lang === 'english'){ %>
+
+                    <a  href="/chemicalproduct/gujrati" class="waves-effect waves-light btn-small btn-flat margin-top-button right">Switch to Gujrati</a>
+                <% } %>
+                <div class="row">
+                    <table class="striped col s12 m12 l10 offset-l3 table-margin">
+                        <thead>
+                          <tr class="align-horizontal" >
+                              <th>Chemical Prod.</th>
+                              <th>Product Brands</th>
+                              <th>Sort Order</th>
+                              <th>Active Status</th>
+                              <th>Modify/Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody id="crop-list">
+                            <% snapshot.docs.forEach(doc =>{ %>
+                                <% let c = 0 %>
+                          <tr class="align-horizontal">
+                              <td class="text-overflow"> <%= doc.data().name %></td>
+                            <td >
+                                <% prod.docs.forEach(docg =>{ %>
+                                    <% let l = docg.data().linkedChemicalProdId.length %>
+                                    <% if (typeof(docg.data().linkedChemicalProdId) === 'string'){ l = 1 }%>
+                                    <% for( let i = 0; i < l ; i++) { %>
+                                    <% if(l === 1){  %>
+                                        <%  if(docg.data().linkedChemicalProdId === doc.id){  %>
+                                            <% c = c+1 %>
+                                    <% }} else if(docg.data().linkedChemicalProdId[i] === doc.id){ %>
+                                            <% c = c+1 %>
+                                    <% }}}) %>
+                                    <%= c %>
+                            </td>
+                              <td class="text-overflow"> <%= doc.data().sortOrder %> </td>
+                              <td> 
+                                <% if(doc.data().active === 'true'){ %>
+                                    <i class="material-icons green-text">check</i>  
+                                <% } else { %>
+                                    <i class="material-icons red-text">do_not_disturb_alt</i>  
+                                <% } %> 
+                              <td>
+                                <div class="horizontal-align">
+                                    <a href="/chemicalproduct/edit/<%= doc.data().language %>/<%= doc.id %>"><span class="style-cross"><i class="material-icons">edit</i></span></a>
+
+
+                                    <form action="/chemicalproduct/delete/<%= doc.data().language %>/<%= doc.id %>" method="POST">
+                                        <button class="no-default-icon">
+                                            <span class="style-cross"><i class="material-icons">delete</i></span>
+                                        </button>
+                                    </form>
+                                    
+                                </div>
+                              </td>
+                          </tr>
+                          <% }) %>
+                        </tbody>
+                      </table>
+                </div>
+               
+            </div>
+            
+            
+        </div>
+      
+                
+    
+    </div>
+   
+
+
+    
+    <%- include('../partials/footer'); -%>
+    
+    <script>
+        $(document).ready(function(){
+        $('.sidenav').sidenav();
+        });
+    </script>
+</body>
+</html>

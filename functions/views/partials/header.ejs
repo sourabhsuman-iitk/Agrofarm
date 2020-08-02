@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/widgEditor.css">
+    <script type="text/javascript" src="/widgEditor.js"></script>
+    <title>Main Agrofarm</title>
+    
+</head>
+<body class="has-fixed-sidenav" style="overflow: none;">
+    <nav class="navbar-fixed white">
+        <div class="nav-wrapper ">
+            <div class="container">
+                
+                
+                <a href="#!" data-target="mobile-links" class="sidenav-trigger left"><i class="material-icons black-text">menu</i></a>
+                <ul id="nav-mobile" class="right">
+                    <li><a  class="black-text" href="/home"> Dashboard</a></li>
+                    <li><a  class="black-text" id="log-out" href="/">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+      </nav>
+    
+    <ul class="sidenav sidenav-fixed blue-grey darken-4" id="mobile-links" style=" overflow: auto;">
+        <a href="#" class="brand-on-sidenav white-text lighten-4 ">Agrofarm</a>
+        <div class="sidenav-elements">
+            
+            <li ><a class="white-text" id="crop-category-nav" href="/cropcategory/english">Crop Categories</a></li>
+            <li><a class="white-text" id="crop-nav" href="/crop/english">Crop</a></li>
+            <li><a class="white-text" id="pest-group-anv" href="/pestgroup/english">Pest Groups</a></li>
+            <li><a class="white-text" id="pest-nav" href="/pest/english">Pest</a></li>
+            <li><a class="white-text" id="chemical-product-nav" href="/chemicalproduct/english">Chemical Product</a></li>
+            <li><a class="white-text" id="product-brand-nav" href="/productbrand/english">Product Brand</a></li>
+        </div>
+    </ul>

@@ -1,0 +1,97 @@
+<%- include('../partials/header'); -%>
+    <div id="crop-category-container" class="container ">
+        <div class="masonry row" style="position: relative;">
+            <div class="title col s12" style="position:absolute;">
+                Pest Groups
+            </div>
+
+           
+            <div class="col s12" style="position: absolute; left:0; top: 50px;" >
+                
+                <a  href="/addpestgroup/select" class="waves-effect waves-light btn-small margin-top-button right"><button class="no-default white-text">Add Pest Group</button></a>
+                <% if(lang === 'gujrati'){ %>
+                    <a  href="/pestgroup/english" class="waves-effect waves-light btn-small btn-flat margin-top-button right">Switch to English</a>
+                  
+                <% } else if(lang === 'english'){ %>
+
+                    <a  href="/pestgroup/gujrati" class="waves-effect waves-light btn-small btn-flat margin-top-button right">Switch to Gujrati</a>
+                <% } %>
+                <div class="row">
+                    <table class="striped col s12 m12 l10 offset-l3 table-margin">
+                        <thead>
+                          <tr>
+                              <th>Pest Group</th>
+                              <th>Pest </th>
+                              <th>Image </th>
+                              <th>Sort Order</th>
+                              <th>Active Status</th>
+                          </tr>
+                        </thead> 
+                        <tbody id="crop-list">
+                            <% snapshot.docs.forEach(doc =>{ %>
+                                <% let c = 0 %>
+                          <tr>
+                              <td class="text-overflow"> <%= doc.data().name %></td>
+                              <td>
+                                <% pest.docs.forEach(docg =>{ %>
+                                    <% let l = docg.data().linkedPestGroupId.length %>
+                                    <% if (typeof(docg.data().linkedPestGroupId) === 'string'){ l = 1 }%>
+                                    <% for( let i = 0; i < l ; i++) { %>
+                                    <% if(l === 1){  %>
+                                        <%  if(docg.data().linkedPestGroupId === doc.id){  %>
+                                            <% c = c+1 %>
+                                    <% }} else if(docg.data().linkedPestGroupId[i] === doc.id){ %>
+                                            <% c = c+1 %>
+                                    <% }}}) %>
+                                    <%= c %>
+                              </td>
+                              <td> <img class="avatar-style" src="<%= doc.data().image %>" alt="img"> </td>
+                              <td class="text-overflow"> <%= doc.data().sortOrder %> </td>
+                              <td>
+                                <% if(doc.data().active === 'true'){ %>
+                                    <i class="material-icons green-text">check</i>  
+                               <% } else { %>
+                                    <i class="material-icons red-text">do_not_disturb_alt</i>  
+                               <% } %> 
+                              </td>
+                             
+                              <td>
+                                <div class="horizontal-align">
+                                    <a href="/pestgroup/edit/<%= doc.data().language %>/<%= doc.id %>"><span class="style-cross"><i class="material-icons">edit</i></span></a>
+
+
+                                    <form action="/pestgroup/delete/<%= doc.data().language %>/<%= doc.id %>" method="POST">
+                                        <button class="no-default-icon">
+                                            <span class="style-cross"><i class="material-icons">delete</i></span>
+                                        </button>
+                                    </form>
+                                    
+                                </div>
+                              </td>
+                          </tr>
+                          <% }) %>
+                        </tbody>
+                      </table>
+                </div>
+               
+            </div>
+            
+            
+        </div>
+      
+                
+    
+    </div>
+   
+
+
+    
+    <%- include('../partials/footer'); -%>
+    
+    <script>
+        $(document).ready(function(){
+        $('.sidenav').sidenav();
+        });
+    </script>
+</body>
+</html>

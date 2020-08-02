@@ -1,0 +1,98 @@
+<%- include('../partials/header'); -%>
+    <div id="crop-container" class="container ">
+        <div class="masonry row" style="position: relative;">
+            <div class="title col s12" style="position:absolute;">
+                Add Crop Category
+            </div>
+            <div class="col s12" style="position: absolute; left: 0; top: 50px;">
+                <div class="row">
+                    <div class="col s12 m10 offset-m1 l8 offset-l3">
+                        
+                     
+
+                        <form action="/cropcategory" id="category-form" name="content" method="POST" >    
+                            <div class="input-field remove-margin">
+                                <input type="text" name="lang" id="select-lang" value="<%= lang %>" required>
+                                <label for="select-lang">Selected Language</label>
+                            </div> 
+                            <div class="input-field remove-margin">
+                                <input type="text" name="name" id="category-name" required>
+                                <label for="crop-name">Crop Category Name</label>
+                            </div>
+                            
+                                <!-- <input type="text" name="image" id="category-image" required> -->
+                                <div>
+                                   <p> Upload Image or Enter URL</p>
+                                   <br>
+                                <label for="category-image">Image Upload</label>
+                                <input type="file" id="category-image">
+                                <button id="add-category-button"> Upload Image</button>
+                                </div>
+                                
+                                <label for="image-url">Enter image URL</label>
+                                <input type="text" name="image" id="image-url" required>
+                            <div class="input-field remove-margin">
+                                <input type="text" name="sortOrder" id="category-sort-order" required>
+                                <label for="crop-sort-order">Sort Order</label>
+                            </div>
+                                Active Status
+                                <p>
+                                    <label>
+                                      <input name="active" id="category-active" value="true" type="radio" required />
+                                      <span class="radio-val">Active</span>
+                                    </label>
+                                  </p>
+                                  <p>
+                                    <label>
+                                      <input name="active" id="category-active" value="false" type="radio" />
+                                      <span class="radio-val">Inactive</span>
+                                    </label>
+                                  </p>
+                                                
+        
+                           <button  class="no-default white-text"> <a class="waves-effect waves-light btn-small margin-top-button">Add Crop Category</a></button></a>
+                        </form>
+                    </div>
+                   
+                </div>
+            </div>
+    
+        </div>
+      
+    </div>
+   
+
+
+        
+    <%- include('../partials/footer'); -%>
+    <script>
+        $(document).ready(function(){
+        $('.sidenav').sidenav();
+        });
+                
+    
+        const button = document.getElementById('add-category-button')
+        button.addEventListener('click', function(){
+        const ref = firebase.storage().ref()
+        const file = document.getElementById('category-image').files[0]
+        const name = new Date() + '-' + file.name
+
+        const metadata = {
+            contentType:file.type
+        }
+        const task = ref.child(name).put(file, metadata)
+
+        task.then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+            
+            const imageurl = document.getElementById('image-url')
+            imageurl.setAttribute('value', url)
+        })
+
+
+        })
+
+
+    </script>
+</body>
+</html>

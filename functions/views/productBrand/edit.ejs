@@ -1,0 +1,150 @@
+<%- include('../partials/header'); -%>
+
+    <div id="crop-container" class="container ">
+        <div class="masonry row" style="position: relative;">
+            <div class="title col s12" style="position:absolute;">
+                Edit Product Brand
+            </div>
+            <div class="col s12" style="position: absolute; left: 0; top: 50px;">
+                <div class="row">
+                    <div class="col s12 m10 offset-m1 l8 offset-l3">
+                        <div>
+                            <p> Current Image</p>
+                            <img class="avatar-style-preview" src="<%= crop.data().image %>" alt="img">
+                            <p> Update Image or Enter URL</p>
+                            <br>
+                         <label for="image">Image Upload</label>
+                         <input type="file" id="image">
+                         <button id="edit-image-button"> Upload Image</button>
+                         </div>
+                         <br>
+                        <form action="/productbrand/edit/<%= crop.data().language %>/<%= crop.id %>" name="content" method="POST" >    
+                            <div class="input-field remove-margin">
+                                <input type="text" name="brandname" id="crop-name" value="<%= crop.data().brandname %>" required>
+                                <label for="crop-name">Product Brand Name</label>
+                            </div>
+                            <div class="input-field remove-margin">
+                                <input type="text" name="compname" id="crop-name" value="<%= crop.data().compname %>" required>
+                                <label for="crop-name">Company Name</label>
+                            </div>
+                            
+                            
+                            <label for="image-url">Enter image URL</label>
+                            <input type="text" name="image" id="image-url" value="<%= crop.data().image %>">
+
+                            <div class="input-field remove-margin">
+                                <input type="text" name="sortOrder" id="crop-sort-order" value="<%= crop.data().sortOrder %>" required>
+                                <label for="crop-sort-order">Sort Order</label>
+                            </div>
+                            Active Status
+                                <p>
+                                    <label>
+                                       <% if(crop.data().active === 'true'){ %>
+                                            <input name="active" id="active" value="true" type="radio" checked required/>
+                                        <% } else { %>
+                                            <input name="active" id="active" value="true" type="radio" required/>
+                                        <% } %>
+                                     
+                                      <span class="radio-val">Active</span>
+                                    </label>
+                                  </p>
+                                  <p>
+                                    <label>
+                                       <% if(crop.data().active === 'false'){ %>
+                                            <input name="active" id="active" value="false" type="radio" checked />
+                                       <% } else { %>
+                                            <input name="active" id="active" value="false" type="radio" />
+                                       <% } %>
+                                      <span class="radio-val">Inactive</span>
+                                    </label>
+                                  </p>
+                            <label for="crop-description"> Description and mode of action</label>
+                            <textarea class="crop-description widgEditor" name="description" id="crop-description" required><%= crop.data().description %></textarea>
+                            <label for="crop-application">Application and dosage</label>
+                            <textarea class="small-textarea widgEditor" name="application" id="crop-application" required><%= crop.data().application%></textarea>
+                           
+                            <br>
+                            <p>Link Chemical products*(required)</p>
+                                  
+                            <% chemp.docs.forEach(doc =>{ %>
+                                <% let isDisplayed = 0 %>
+                                <% let l = crop.data().linkedChemicalProdId.length %>
+                                <% if (typeof(crop.data().linkedChemicalProdId) === 'string'){ l = 1 }%>
+                                  <% for( let i = 0; i < l ; i++) { %>
+                                    <%  if((crop.data().linkedChemicalProdId === doc.id) && (l === 1)){  %>
+                                       <% isDisplayed = 1 %>
+                                        <p>
+                                        <label>
+                                          <input type="checkbox" name="linkedChemicalProdId" class="filled-in" checked value="<%= doc.id %>" />
+                                          <span><%= doc.data().name %></span>
+                                        </label>
+                                        </p>
+                                    <% } else if(crop.data().linkedChemicalProdId[i] === doc.id){ %>
+                                      <% isDisplayed = 1 %>
+                                      <p>
+                                        <label>
+                                          <input type="checkbox" name="linkedChemicalProdId" class="filled-in" checked value="<%= doc.id %>" />
+                                          <span><%= doc.data().name %></span>
+                                        </label>
+                                        </p>
+                                  <% }} %>
+                                 <% if(isDisplayed === 0) { %> 
+                                <p>
+                                <label>
+                                  <input type="checkbox" name="linkedChemicalProdId" class="filled-in" value="<%= doc.id %>" />
+                                  <span><%= doc.data().name %></span>
+                                </label>
+                              </p>
+                            
+                            <% }}) %> 
+                            <br>
+                            <hr>
+                            <br>
+                            <p>
+                                <label>
+                                  <input type="checkbox" class="filled-in" required/>
+                                  <span>Completed Above Fields</span>
+                                </label>
+                              </p>
+                              <br>
+                           <button class="no-default white-text"> <a class="waves-effect waves-light btn-small margin-top-button">Update</a></button></a>
+                        </form>
+                    </div>
+                   
+                </div>
+            </div>
+    
+        </div>
+      
+    </div>
+   
+
+    <%- include('../partials/footer'); -%>
+    <script>
+        $(document).ready(function(){
+        $('.sidenav').sidenav();
+        });
+
+        const button = document.getElementById('edit-image-button')
+        button.addEventListener('click', function(){
+        const ref = firebase.storage().ref()
+        const file = document.getElementById('image').files[0]
+        const name = new Date() + '-' + file.name
+
+        const metadata = {
+            contentType:file.type
+        }
+        const task = ref.child(name).put(file, metadata)
+
+        task.then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+           
+            const imageurl = document.getElementById('image-url')
+            imageurl.setAttribute('value', url)
+        })
+
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+*{
+    margin: 0;
+    padding: 0;
+    z-index: 100;
+}
+
+
+/* .hide-container {
+    display: none;
+} */
+.firebaseui-tos {
+    display: none;
+}
+#firebaseui-auth-container {
+    margin-top: 10px;
+}
+.align-center {
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.select-lang-button {
+    margin: 30px;   
+    
+}
+.select-width {
+    width: 140px;
+}
+
+#select-lang {
+    text-transform: uppercase;
+}
+.sign-in-header {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin-top: 100px;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+button.no-default-icon {
+    outline: none;
+    border: none;
+    background: none;
+    width: 15px;
+    padding: none;
+    margin: none;
+    cursor: pointer;
+}
+.no-default {
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.margin-right {
+    margin-right: 10px;
+}
+.title {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+.remove-margin {
+    margin: 9px 0;
+}
+.margin-top-button {
+    margin-top: 5px;
+}
+/* .text-overflow {
+    display: block;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+} */
+.style-cross i{
+    font-size: 1.3rem;
+    color: black;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 10px;
+}
+span.style-cross:nth-child(1){
+    padding: 2px 25px 0 0px;
+    margin-left:-15px;
+}
+span.style-cross:nth-child(2){
+    padding: 2px 8px 0 0px;
+    margin-left:-15px;
+}
+.horizontal-align {
+    display: flex;
+    flex-direction: row;
+    width: 40px;
+}
+.align-horizontal {
+    display: flex;
+    align-items: row;
+    justify-content: space-between;
+}
+td {
+    padding: 10px;
+}
+.sidenav-elements {
+    margin-top: 120px;
+}
+.brand-on-sidenav {
+    margin: 15px auto 0 90px;
+    position: fixed;
+    text-align: center;
+    font-size: 1.5rem;
+
+}
+.avatar-style {
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.avatar-style-preview {
+    vertical-align: middle;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.crop-description {
+    border-radius: 5px;
+    height: 350px;
+    padding: 10px;
+    resize: vertical;
+}
+.small-textarea {
+    border-radius: 5px;
+    height: 400px;
+    padding: 10px;
+    resize: vertical;
+}
+.table-margin {
+    margin-bottom: 400px;
+}
+.card .card-image .card-title{
+   color: white;
+   text-shadow: 1px 1px 5px gray;
+   font-weight: 500;
+   z-index: 100;
+}
+#crop-container {
+    margin-bottom: auto;
+}
+.error-404 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 200px;
+    background: aquamarine;
+    padding: 30px;
+    border-radius: 8px;
+}
+@media only screen and (max-width: 870px) {
+    .style-cross {
+        width: 20px;
+    }
+    .text-overflow {
+        display: block;
+        width: 90px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .row .col{
+        padding: 5px;
+     }
+     .btn-small.add-crop-button {
+        margin-right: 100px;
+        margin-bottom: 100px;
+        z-index: 100;
+        padding-right:10px ;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .text-overflow {
+        width: 68px;
+    }
+    .select-lang-button {
+        margin: 20px 10px 0 10px;
+    }
+    .select-width {
+        width: 90px;
+    }
+    .text-overflow-2 {
+        display: block;
+        width: 75px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .col .row {
+       padding: 0;
+    }
+    .sidenav.sidenav-fixed{
+        width: 250px;
+    }
+    .brand-on-sidenav {
+        margin-left: 65px;
+    }
+    .card .card-content {
+        padding: 10px;
+    }
+}
